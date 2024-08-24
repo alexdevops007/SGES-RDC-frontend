@@ -52,6 +52,8 @@ const actions = {
 const getters = {
   users: (state) => state.users,
   user: (state) => state.user,
+  investigators: (state) =>
+    state.users.filter((user) => user.role === "enquêteur"),
 };
 
 export default {
