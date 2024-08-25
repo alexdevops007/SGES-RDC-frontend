@@ -22,6 +22,11 @@ const routes = [
     component: () => import("../views/InquiryView.vue"),
     // meta: { requiresAuth: true },
   },
+  {
+    path: "/notifications",
+    name: "notifications",
+    component: () => import("../views/NotificationsView.vue"),
+  },
 ];
 
 const router = createRouter({

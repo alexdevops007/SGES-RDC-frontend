@@ -1,27 +1,25 @@
 <template>
   <div class="bg-white p-6 rounded-lg shadow-md">
-    <h2 class="text-2xl font-bold mb-4">Statistiques des Enquêtes</h2>
-    <Bar :data="chartData" v-if="chartDataAvailable" />
+    <h2 class="text-2xl font-bold mb-4">Urgence des Enquêtes</h2>
+    <Pie :data="chartData" v-if="chartDataAvailable" />
     <p v-else class="text-pnc-gray">Pas de données disponibles</p>
   </div>
 </template>
 
 <script>
-import { Bar } from "vue-chartjs";
+import { Pie } from "vue-chartjs";
 import {
   Chart as ChartJS,
   Title,
   Tooltip,
   Legend,
-  BarElement,
-  CategoryScale,
-  LinearScale,
+  ArcElement,
 } from "chart.js";
 
-ChartJS.register(Title, Tooltip, Legend, BarElement, CategoryScale, LinearScale);
+ChartJS.register(Title, Tooltip, Legend, ArcElement);
 
 export default {
-  name: "InquiryStats",
+  name: "UrgencyPieChart",
   props: {
     reportData: {
       type: Object,
@@ -29,7 +27,7 @@ export default {
     },
   },
   components: {
-    Bar,
+    Pie,
   },
   computed: {
     chartData() {
@@ -38,15 +36,15 @@ export default {
       }
 
       return {
-        labels: ["En cours", "Complété", "Urgent"],
+        labels: ["Basse", "Moyenne", "Élevée"],
         datasets: [
           {
-            label: "Enquêtes",
-            backgroundColor: ["#FF5733", "#33FF57", "#3357FF"],
+            label: "Nombre d'enquêtes",
+            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
             data: [
-              this.reportData.enCours,
-              this.reportData.complete,
-              this.reportData.urgent,
+              this.reportData.basse,
+              this.reportData.moyenne,
+              this.reportData.elevee,
             ],
           },
         ],
@@ -62,7 +60,7 @@ export default {
           },
           title: {
             display: true,
-            text: "Distribution des Enquêtes par Statut",
+            text: "Répartition des Enquêtes par Urgence",
           },
         },
       };
