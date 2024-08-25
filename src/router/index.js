@@ -7,14 +7,37 @@ const routes = [
     component: () => import("../views/HomeView.vue"),
   },
   {
+    path: "/",
+    component: () => import("../components/layouts/MainLayout.vue"),
+    children: [
+      {
+        path: "dashboard",
+        name: "dashboard",
+        component: () => import("../views/DashboardView.vue"),
+      },
+      {
+        path: "users",
+        name: "user-management",
+        component: () => import("../views/UserManagementView.vue"),
+      },
+      {
+        path: "inquiries",
+        name: "inquiries",
+        component: () => import("../views/InquiryView.vue"),
+        // meta: { requiresAuth: true },
+      },
+      {
+        path: "notifications",
+        name: "notifications",
+        component: () => import("../views/NotificationsView.vue"),
+      },
+    ],
+  },
+  /*
+  {
     path: "/users",
     name: "user-management",
     component: () => import("../views/UserManagementView.vue"),
-  },
-  {
-    path: "/dashboard",
-    name: "dashboard",
-    component: () => import("../views/DashboardView.vue"),
   },
   {
     path: "/inquiries",
@@ -27,6 +50,7 @@ const routes = [
     name: "notifications",
     component: () => import("../views/NotificationsView.vue"),
   },
+  */
 ];
 
 const router = createRouter({

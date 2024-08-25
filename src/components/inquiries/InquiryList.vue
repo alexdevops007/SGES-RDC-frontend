@@ -26,60 +26,61 @@
     </div>
 
     <!-- Tableau des Enquêtes -->
-    <table class="min-w-full bg-white">
-      <thead>
-        <tr>
-          <th class="py-2 px-4 border-b">Titre</th>
-          <th class="py-2 px-4 border-b">Urgence</th>
-          <th class="py-2 px-4 border-b">État</th>
-          <th class="py-2 px-4 border-b">Assigné à</th>
-          <th class="py-2 px-4 border-b">Actions</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="inquiry in filteredInquiries" :key="inquiry._id">
-          <td class="py-2 px-4 border-b">{{ inquiry.title }}</td>
-          <td class="py-2 px-4 border-b">
-            <span :class="urgencyClass(inquiry.urgency)">
-              {{ inquiry.urgency }}
-            </span>
-          </td>
-          <td class="py-2 px-4 border-b">
-            <span :class="statusClass(inquiry.status)">
-              {{ inquiry.status }}
-            </span>
-          </td>
-          <td class="py-2 px-4 border-b">
-            {{ inquiry.assignedTo?.name || "Non assigné" }}
-          </td>
-          <td class="py-2 px-4 border-b">
-            <button
-              @click="editInquiry(inquiry)"
-              class="bg-gray-500 text-white px-2 py-1 rounded mr-2"
-            >
-              Modifier
-            </button>
-            <button
-              @click="viewInquiry(inquiry)"
-              class="bg-blue-500 text-white px-2 py-1 rounded mr-2"
-            >
-              Détails
-            </button>
-            <button
-              @click="deleteInquiry(inquiry._id)"
-              class="bg-red-500 text-white px-2 py-1 rounded"
-            >
-              Supprimer
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<table class="min-w-full bg-white border-collapse shadow-lg">
+  <thead>
+    <tr class="bg-gray-200">
+      <th class="py-3 px-4 text-left border-b-2 border-gray-300 text-gray-700">Titre</th>
+      <th class="py-3 px-4 text-center border-b-2 border-gray-300 text-gray-700">Urgence</th>
+      <th class="py-3 px-4 text-center border-b-2 border-gray-300 text-gray-700">État</th>
+      <th class="py-3 px-4 text-left border-b-2 border-gray-300 text-gray-700">Assigné à</th>
+      <th class="py-3 px-4 text-center border-b-2 border-gray-300 text-gray-700">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr v-for="inquiry in filteredInquiries" :key="inquiry._id" class="hover:bg-gray-100 transition-colors">
+      <td class="py-3 px-4 text-left border-b border-gray-200">{{ inquiry.title }}</td>
+      <td class="py-3 px-4 text-center border-b border-gray-200">
+        <span :class="urgencyClass(inquiry.urgency)">
+          {{ inquiry.urgency }}
+        </span>
+      </td>
+      <td class="py-3 px-4 text-center border-b border-gray-200">
+        <span :class="statusClass(inquiry.status)">
+          {{ inquiry.status }}
+        </span>
+      </td>
+      <td class="py-3 px-4 text-left border-b border-gray-200">
+        {{ inquiry.assignedTo?.name || "Non assigné" }}
+      </td>
+      <td class="py-3 px-4 text-center border-b border-gray-200">
+        <button
+          @click="editInquiry(inquiry)"
+          class="bg-gray-500 text-white px-3 py-1 rounded hover:bg-gray-600 transition-colors mr-1"
+        >
+          Modifier
+        </button>
+        <button
+          @click="viewInquiry(inquiry)"
+          class="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-600 transition-colors mr-1"
+        >
+          Détails
+        </button>
+        <button
+          @click="deleteInquiry(inquiry._id)"
+          class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition-colors"
+        >
+          Supprimer
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
   </div>
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex';
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   props: {
