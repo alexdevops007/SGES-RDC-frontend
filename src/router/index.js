@@ -31,26 +31,19 @@ const routes = [
         name: "notifications",
         component: () => import("../views/NotificationsView.vue"),
       },
+      {
+        path: "reports",
+        name: "Reports",
+        component: () => import("../views/ReportsView.vue"),
+      },
+      {
+        path: "reports/:id",
+        name: "ReportDetail",
+        component: () => import("../components/reports/ReportDetail.vue"),
+        props: true,
+      },
     ],
   },
-  /*
-  {
-    path: "/users",
-    name: "user-management",
-    component: () => import("../views/UserManagementView.vue"),
-  },
-  {
-    path: "/inquiries",
-    name: "inquiries",
-    component: () => import("../views/InquiryView.vue"),
-    // meta: { requiresAuth: true },
-  },
-  {
-    path: "/notifications",
-    name: "notifications",
-    component: () => import("../views/NotificationsView.vue"),
-  },
-  */
 ];
 
 const router = createRouter({
