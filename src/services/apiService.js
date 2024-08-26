@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseURL =
   process.env.NODE_ENV === "production"
-    ? "https://hydro-contract-backend.vercel.app/api"
+    ? "https://sges-rdc-backend.vercel.app/api"
     : "http://localhost:3000/api";
 
 const apiService = axios.create({
