@@ -6,7 +6,7 @@
       <h2 class="text-2xl font-bold mb-6 text-center lg:text-left">SGES-RDC</h2>
       <nav>
         <ul>
-            <li class="mb-4">
+          <li class="mb-4">
             <router-link
               to="/dashboard"
               class="flex items-center justify-center lg:justify-start"
@@ -60,9 +60,12 @@
     <div class="flex-1 p-6 bg-gray-100">
       <header
         class="flex flex-col lg:flex-row justify-between items-center mb-6"
-      ><div></div>
+      >
+        <div></div>
         <div class="flex items-center">
-          <span class="mr-4">{{ user.name }}</span>
+          <span class="mr-4 text-xs"
+            >Connecté en tant que <strong>{{ user.name }}</strong></span
+          >
           <button
             @click="handleLogout"
             class="bg-red-500 text-white px-4 py-2 rounded"
